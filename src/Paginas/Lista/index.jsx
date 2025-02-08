@@ -2,38 +2,43 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contextos/AuthLoginLogout";
 
+import Categoria from "../../Componentes/Categoria";
+
 //importe o estilo local
 import "./index.css";
 
 const Lista = () => {
     //coordenada o usuario e funcoes da tela
-    const {user, registraTarefa, lista = [], deletaTarefa, loadingLista} = useAuth();
+    const {user, registraCategoria, lista = [], loadingLista} = useAuth();
     const navigate = useNavigate();
 
-    //coordena a adição do tarefa na lista
+    //coordena a adição da categoria na lista
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        registraTarefa(tarefa);
+        registraCategoria(categoria);
         //atualiza a lista
         
-        setTarefa("");
+        setCategoria("");
         handleAcaoChange();
     }
 
     //coordena item
-    const [tarefa, setTarefa] = useState("");
-    const handleTarefaChange = (e) => setTarefa(e.target.value);
+    const [categoria, setCategoria] = useState("");
+    const handleCategoriaChange = (e) => setCategoria(e.target.value);
+
+    //coordena as categorias unicas
+    const [categorias, setCategorias] = useState([]);
 
     //coordena a ação de mostrar o campo de registro
     const [acao, setAcao] = useState(false);
     const handleAcaoChange = () => setAcao(!acao);
 
     //referencia para o input texto do form
-    const inputTarefaRef = useRef();
+    const inputCategoriaRef = useRef();
     useEffect(()=>{
         if(acao == true){
-            inputTarefaRef.current.focus();
+            inputCategoriaRef.current.focus();
         }
     }, [acao]);
 
@@ -42,7 +47,11 @@ const Lista = () => {
         if(!user){
             navigate("/");
         }
-    }, []);
+
+        //descobre as categorias unicas do registro do usuario
+        const categoriasUnicas = [...new Set(lista.map(item => item.categoria))];
+        setCategorias(categoriasUnicas);
+    }, [lista]);
 
     return(
         <section>
@@ -51,17 +60,15 @@ const Lista = () => {
                 <h1 className="titulo">Carregando sua lista...</h1> 
             ) : lista.length ? ( 
                 <>
-                    <h1 className="titulo">Lista de tarefas:</h1>
-                    <ul>
-                        {
-                            lista.map((item) => (
-                                <li key={item.id}>-{item.nome}<button onClick={() => deletaTarefa(item.id)}>X</button></li>
-                            ))
-                        }
-                    </ul>
+                    <h1 className="titulo">Lista de favoritos:</h1>
+                    {
+                        categorias.map((item, i)=>(
+                            <Categoria key={i} categoria={item} lista={lista} />
+                        ))
+                    }
                 </>
             ) : ( 
-                <h1 className="titulo">Sua lista de tarefas está vazia</h1> 
+                <h1 className="titulo">Sua lista de favoritos está vazia</h1> 
             )
         }
         <button className="registrar" onClick={handleAcaoChange}>+</button>
@@ -69,8 +76,8 @@ const Lista = () => {
             acao &&
             <div className="novoregistro">
                 <form onSubmit={handleSubmit}>
-                    <label htmlFor="tarefa">Tarefa</label>
-                    <input type="text" name="tarefa" id="tarefa" value={tarefa} onChange={handleTarefaChange} ref={inputTarefaRef} />
+                    <label htmlFor="categoria">Categoria</label>
+                    <input type="text" name="categoria" id="categoria" value={categoria} onChange={handleCategoriaChange} ref={inputCategoriaRef} />
                     <input type="submit" value="Registrar" className="nrformsub" />
                 </form>
             </div>

@@ -13,9 +13,7 @@ import {
   where, 
   onSnapshot,
   deleteDoc, 
-  doc,
-  serverTimestamp,
-  orderBy
+  doc
 } from "firebase/firestore";
 
 // Criando o contexto
@@ -69,15 +67,32 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  //função que registra os items de compra
-  const registraTarefa = async (nome) => {
+  //função que registra as novas categorias
+  const registraCategoria = async (categoria) => {
     if (!user) return; // Garante que o usuário está autenticado
 
     try {
-      await addDoc(collection(db, "tarefas"), {
-          nome: nome,
-          usuario: user.uid, // ID do usuário autenticado
-          timestamp: serverTimestamp(),
+      await addDoc(collection(db, "registros"), {
+        usuario: user.uid, // ID do usuário autenticado  
+        categoria: categoria,
+        nome: "-",
+        link: "-"
+      });
+    } catch (error) {
+      console.error("Erro ao adicionar item:", error);
+    }
+  };
+
+  //função que registra os novos favoritos
+  const registraFavorito = async (categoria, nome, link) => {
+    if (!user) return; // Garante que o usuário está autenticado
+
+    try {
+      await addDoc(collection(db, "registros"), {
+        usuario: user.uid, // ID do usuário autenticado  
+        categoria: categoria,
+        nome: nome,
+        link: link
       });
     } catch (error) {
       console.error("Erro ao adicionar item:", error);
@@ -98,9 +113,8 @@ export const AuthProvider = ({ children }) => {
     setLoadingLista(true);
 
     const q = query(
-      collection(db, "tarefas"),
-      where("usuario", "==", user.uid),
-      orderBy("timestamp", "asc")
+      collection(db, "registros"),
+      where("usuario", "==", user.uid)
     );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -120,17 +134,17 @@ export const AuthProvider = ({ children }) => {
 }, [user]);
 
   //função que deleta um item do banco
-  const deletaTarefa = async (id) => {
+  const deletaFavorito = async (id) => {
     try {
-      await deleteDoc(doc(db, "tarefas", id));
-      console.log("Tarefa deletada com sucesso!");
+      await deleteDoc(doc(db, "registros", id));
+      console.log("Registro deletado com sucesso!");
     } catch (error) {
-      console.error("Erro ao deletar tarefa:", error);
+      console.error("Erro ao deletar registro:", error);
     }
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading, registraTarefa, lista, deletaTarefa, loadingLista }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, loadingLista }}>
       {!loading && children}
     </AuthContext.Provider>
   );

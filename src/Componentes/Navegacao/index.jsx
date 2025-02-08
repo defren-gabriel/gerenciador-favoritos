@@ -26,13 +26,13 @@ const Navegacao = () => {
     return(
         <header>
             <div className="dev">
-                <a href="https://github.com/defren-gabriel/aquela-tarefa" target="_blank">Link do Projeto</a>
+                <a href="https://github.com/defren-gabriel/gerenciador-favoritos" target="_blank">Link do Projeto</a>
                 <a href="https://github.com/defren-gabriel" target="_blank">Link do DeFrEn</a>
             </div>
 
             <nav>
                 <div className="container1">
-                    <span>Aquela Tarefa</span>
+                    <span>Favoritos Web</span>
                     <NavLink to={"/"} style={{display: estaLista ? "none" : "block"}} disabled={estaLista}>Início</NavLink>
                     <NavLink to={"/lista"} style={{display: estaInicio ? "none" : "block"}} disabled={estaInicio} >Tarefas</NavLink>
                 </div>
