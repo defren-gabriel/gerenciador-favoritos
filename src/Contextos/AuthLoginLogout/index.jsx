@@ -57,7 +57,7 @@ export const AuthProvider = ({ children }) => {
       console.error("Erro ao registrar usuário:", error.message);
       throw error;
     }
-  };  
+  };
 
   // Função de logout
   const logout = async () => {
@@ -76,7 +76,8 @@ export const AuthProvider = ({ children }) => {
     try {
       await addDoc(collection(db, "categorias"), {
         usuario: user.uid, // ID do usuário autenticado  
-        categoria: categoria
+        categoria: categoria,
+        timestamp: serverTimestamp(),
       });
     } catch (error) {
       console.error("Erro ao adicionar item:", error);
@@ -92,7 +93,8 @@ export const AuthProvider = ({ children }) => {
         usuario: user.uid, // ID do usuário autenticado  
         categoria: categoria,
         nome: nome,
-        link: link
+        link: link,
+        timestamp: serverTimestamp()
       });
     } catch (error) {
       console.error("Erro ao adicionar item:", error);
