@@ -2,7 +2,7 @@
 
 ###
 
-<h2 align="left">Projeto - Gerenciador de Favoritos Web</h2>
+<h2 align="left">Projeto - Gerenciador de Links Favoritos</h2>
 
 ###
 
