@@ -50,13 +50,29 @@ const Categoria = ({categoria, categoriaid, lista}) => {
     const [del, setDel] = useState(false);
     const handleDelChange = () => setDel(!del);
 
+    //função que manipula a execução da delete de categoria
+    const handleDeleteCategoria = () => {
+        const confirmacao = window.confirm("Esta ação excluirá a categoria e todos os favoritos associados a ela. Deseja continuar?");
+        if (confirmacao) {
+            deletaCategoria(catid, cat);
+        }
+    }
+
+    //função que manipula a execução da delete de favorito
+    const handleDeleteFavorito = (id) => {
+        const confirmacao = window.confirm("Esta ação excluirá o favorito associado. Deseja continuar?");
+        if (confirmacao) {
+            deletaFavorito(id);
+        }
+    }
+
     return(
         <div className="categoria">
             <div className="cat">
                 <h2>{cat}</h2>
                 <button className="apagar" onClick={()=>handleDelChange()}>-</button>
                 {
-                    del && <button className="apagar" onClick={()=>deletaCategoria(catid, cat)}>Apagar a categoria</button>
+                    del && <button className="apagar" onClick={()=>handleDeleteCategoria()}>Apagar a categoria</button>
                 }
             </div>
             <div className="grupo">
@@ -67,7 +83,7 @@ const Categoria = ({categoria, categoriaid, lista}) => {
                         <div className="link" key={item.id}>
                             <a href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
                             {
-                                del && <button onClick={() => deletaFavorito(item.id)}>X</button>
+                                del && <button onClick={() => handleDeleteFavorito(item.id)}>X</button>
                             }
                         </div>
                     ))
