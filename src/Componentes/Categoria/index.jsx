@@ -3,11 +3,12 @@ import { useAuth } from "../../Contextos/AuthLoginLogout";
 
 import "./index.css";
 
-const Categoria = ({categoria, lista}) => {
+const Categoria = ({categoria, categoriaid, lista}) => {
     //coordenada o usuario e funcoes da tela
-    const {deletaFavorito, registraFavorito} = useAuth();
+    const {deletaFavorito, registraFavorito, deletaCategoria} = useAuth();
 
     const [cat, setCat] = useState("");
+    const [catid, setCatid] = useState("");
     const [favoritos, setFavoritos] = useState([]);
 
     //coordena o nome e endereço do link
@@ -18,8 +19,9 @@ const Categoria = ({categoria, lista}) => {
 
     useEffect(()=>{
         setCat(categoria);
+        setCatid(categoriaid);
         setFavoritos(lista);
-    }, [categoria, lista]);
+    }, [categoria, categoriaid, lista]);
 
     //coordena a ação de mostrar o campo de registro
     const [acao, setAcao] = useState(false);
@@ -30,7 +32,6 @@ const Categoria = ({categoria, lista}) => {
         e.preventDefault();
         
         registraFavorito(cat, nome, link);
-        //atualiza a lista
         
         setNome("");
         setLink("");
@@ -54,6 +55,9 @@ const Categoria = ({categoria, lista}) => {
             <div className="cat">
                 <h2>{cat}</h2>
                 <button className="apagar" onClick={()=>handleDelChange()}>-</button>
+                {
+                    del && <button className="apagar" onClick={()=>deletaCategoria(catid, cat)}>Apagar a categoria</button>
+                }
             </div>
             <div className="grupo">
                 {

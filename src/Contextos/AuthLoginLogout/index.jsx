@@ -15,7 +15,8 @@ import {
   deleteDoc, 
   doc,
   serverTimestamp,
-  orderBy
+  orderBy,
+  getDocs
 } from "firebase/firestore";
 
 // Criando o contexto
@@ -141,11 +142,8 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     if (!user) {
       setCategorias([]);  
-      setLoadingLista(false);
       return;
     }
-
-    setLoadingLista(true);
 
     const q = query(
       collection(db, "categorias"),
@@ -159,13 +157,11 @@ export const AuthProvider = ({ children }) => {
           ...doc.data(),
       }));
 
-      setLista(cats);
-      setLoadingLista(false);
+      setCategorias(cats);
     });
 
     return () => {
       unsubscribe();
-      setLoadingLista(true); // Reinicia o loading ao desinscrever
     };
   }, [user]);
 
@@ -179,15 +175,40 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+
   //função que deleta um item do banco
-  const deletaCategoria = async (id) => {
+  const deletaCategoria = async (categoriaId, categoriaNome) => {
     try {
-      await deleteDoc(doc(db, "categorias", id));
-      console.log("Registro deletado com sucesso!");
+      // Verifica se o usuário está autenticado
+      if (!user) {
+        console.error("Usuário não autenticado.");
+        return;
+      }
+  
+      const q = query(
+        collection(db, "registros"),
+        where("categoria", "==", categoriaNome),
+        where("usuario", "==", user.uid) // Garante que só exclui os do usuário logado
+      );
+  
+      const querySnapshot = await getDocs(q);
+  
+      // Deleta todos os registros que possuem essa categoria
+      const deletePromises = querySnapshot.docs.map((docSnapshot) =>
+        deleteDoc(doc(db, "registros", docSnapshot.id))
+      );
+  
+      await Promise.all(deletePromises);
+  
+      // Agora deleta a categoria
+      await deleteDoc(doc(db, "categorias", categoriaId));
+  
+      console.log("Categoria e registros relacionados deletados com sucesso!");
     } catch (error) {
-      console.error("Erro ao deletar registro:", error);
+      console.error("Erro ao deletar categoria e registros:", error);
     }
   };
+  
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, deletaCategoria, categorias, loadingLista }}>

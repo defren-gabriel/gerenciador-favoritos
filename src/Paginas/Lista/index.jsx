@@ -9,7 +9,7 @@ import "./index.css";
 
 const Lista = () => {
     //coordenada o usuario e funcoes da tela
-    const {user, registraCategoria, lista = [], loadingLista} = useAuth();
+    const {user, registraCategoria, deletaCategoria, lista = [], categorias = [], loadingLista} = useAuth();
     const navigate = useNavigate();
 
     //coordena a adição da categoria na lista
@@ -17,7 +17,6 @@ const Lista = () => {
         e.preventDefault();
         
         registraCategoria(categoria);
-        //atualiza a lista
         
         setCategoria("");
         handleAcaoChange();
@@ -26,9 +25,6 @@ const Lista = () => {
     //coordena item
     const [categoria, setCategoria] = useState("");
     const handleCategoriaChange = (e) => setCategoria(e.target.value);
-
-    //coordena as categorias unicas
-    const [categorias, setCategorias] = useState([]);
 
     //coordena a ação de mostrar o campo de registro
     const [acao, setAcao] = useState(false);
@@ -47,10 +43,6 @@ const Lista = () => {
         if(!user){
             navigate("/");
         }
-
-        //descobre as categorias unicas do registro do usuario
-        const categoriasUnicas = [...new Set(lista.map(item => item.categoria))];
-        setCategorias(categoriasUnicas);
     }, [lista]);
 
     return(
@@ -58,12 +50,12 @@ const Lista = () => {
         {
             loadingLista ? ( 
                 <h1 className="titulo">Carregando sua lista...</h1> 
-            ) : lista.length ? ( 
+            ) : categorias.length ? ( 
                 <>
                     <h1 className="titulo">Lista de favoritos:</h1>
                     {
-                        categorias.map((item, i)=>(
-                            <Categoria key={i} categoria={item} lista={lista} />
+                        categorias.map((item)=>(
+                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} />
                         ))
                     }
                 </>
