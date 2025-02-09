@@ -13,7 +13,9 @@ import {
   where, 
   onSnapshot,
   deleteDoc, 
-  doc
+  doc,
+  serverTimestamp,
+  orderBy
 } from "firebase/firestore";
 
 // Criando o contexto
@@ -72,11 +74,9 @@ export const AuthProvider = ({ children }) => {
     if (!user) return; // Garante que o usuário está autenticado
 
     try {
-      await addDoc(collection(db, "registros"), {
+      await addDoc(collection(db, "categorias"), {
         usuario: user.uid, // ID do usuário autenticado  
-        categoria: categoria,
-        nome: "-",
-        link: "-"
+        categoria: categoria
       });
     } catch (error) {
       console.error("Erro ao adicionar item:", error);
@@ -102,6 +102,7 @@ export const AuthProvider = ({ children }) => {
   //função que retorna a lista de itens para o seu usuario
   const [lista, setLista] = useState([]); 
   const [loadingLista, setLoadingLista] = useState(true);
+  const [categorias, setCategorias] = useState([]);
   //atualiza a lista sempre que houver uma mudança
   useEffect(() => {
     if (!user) {
@@ -114,16 +115,17 @@ export const AuthProvider = ({ children }) => {
 
     const q = query(
       collection(db, "registros"),
-      where("usuario", "==", user.uid)
+      where("usuario", "==", user.uid),
+      orderBy("timestamp", "asc")
     );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      const tarefas = querySnapshot.docs.map((doc) => ({
+      const lis = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
       }));
 
-      setLista(tarefas);
+      setLista(lis);
       setLoadingLista(false);
     });
 
@@ -131,7 +133,39 @@ export const AuthProvider = ({ children }) => {
       unsubscribe();
       setLoadingLista(true); // Reinicia o loading ao desinscrever
     };
-}, [user]);
+  }, [user]);
+
+  //atualiza as categorias sempre que houver uma mudança
+  useEffect(() => {
+    if (!user) {
+      setCategorias([]);  
+      setLoadingLista(false);
+      return;
+    }
+
+    setLoadingLista(true);
+
+    const q = query(
+      collection(db, "categorias"),
+      where("usuario", "==", user.uid),
+      orderBy("timestamp", "asc")
+    );
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const cats = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+      }));
+
+      setLista(cats);
+      setLoadingLista(false);
+    });
+
+    return () => {
+      unsubscribe();
+      setLoadingLista(true); // Reinicia o loading ao desinscrever
+    };
+  }, [user]);
 
   //função que deleta um item do banco
   const deletaFavorito = async (id) => {
@@ -143,8 +177,18 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  //função que deleta um item do banco
+  const deletaCategoria = async (id) => {
+    try {
+      await deleteDoc(doc(db, "categorias", id));
+      console.log("Registro deletado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao deletar registro:", error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, loadingLista }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, deletaCategoria, categorias, loadingLista }}>
       {!loading && children}
     </AuthContext.Provider>
   );
