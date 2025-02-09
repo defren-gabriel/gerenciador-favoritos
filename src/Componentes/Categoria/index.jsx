@@ -45,35 +45,44 @@ const Categoria = ({categoria, lista}) => {
         }
     }, [acao]);
     
+    //coordena a ação de deletar os favoritos
+    const [del, setDel] = useState(false);
+    const handleDelChange = () => setDel(!del);
+
     return(
         <div className="categoria">
-            <h2>{cat}</h2>
-            {
-                favoritos
-                .filter(item => item.categoria == cat)
-                .map((item) => (
-                    <section key={item.id}>
-                        <a href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
-                        <button onClick={() => deletaFavorito(item.id)}>X</button>
-                    </section>
-                ))
-            }
+            <div className="cat">
+                <h2>{cat}</h2>
+                <button className="apagar" onClick={()=>handleDelChange()}>-</button>
+            </div>
+            <div className="grupo">
+                {
+                    favoritos
+                    .filter(item => item.categoria == cat)
+                    .map((item) => (
+                        <div className="link" key={item.id}>
+                            <a href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
+                            {
+                                del && <button onClick={() => deletaFavorito(item.id)}>X</button>
+                            }
+                        </div>
+                    ))
+                }
+            </div>
             <button className="registrar" onClick={handleAcaoChange}>+</button>
             {
             acao &&
-                <div className="novoregistro">
-                    <form onSubmit={handleSubmit}>
-                        <div>
-                            <label htmlFor="nome">Nome</label>
-                            <input type="text" name="nome" id="nome" value={nome} onChange={handleNomeChange} ref={inputNomeRef} />
-                        </div>
-                        <div>
-                            <label htmlFor="link">Link</label>
-                            <input type="text" name="link" id="link" value={link} onChange={handleLinkChange} />
-                        </div>
-                        <input type="submit" value="Registrar" className="nrformsub" />
-                    </form>
-                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="campo">
+                        <label htmlFor="nome">Nome</label>
+                        <input type="text" name="nome" id="nome" value={nome} onChange={handleNomeChange} ref={inputNomeRef} />
+                    </div>
+                    <div className="campo">
+                        <label htmlFor="link">Link</label>
+                        <input type="text" name="link" id="link" value={link} onChange={handleLinkChange} />
+                    </div>
+                    <input type="submit" value="Registrar" className="nrformsub" />
+                </form>
             }
         </div>
     );

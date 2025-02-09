@@ -4,74 +4,23 @@ section {
 }
 
 .titulo {
-    color: #3E362E;
+    color: #222629;
     font-size: 2em;
-}
-
-li {
-    margin: 5px 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #EBD7C3;
-    padding: 5px 5px 5px 20px;
-    border-radius: 10px;
-    color: #3E362E;
-    font-size: 1.2em;
-}
-
-li button {
-    padding: 10px 15px;
-    background-color: #ffffff;
-    color: #865D36;
-    border: 2px solid #865D36;
-    border-radius: 5px;
-}
-
-li button:hover {
-    background-color: #865D36;
-    color: #ffffff;
-    border: 2px solid #865D36;
-}
-
-.registrar {
-    padding: 5px 30px;
-    background-color: #865D36;
-    color: #ffffff;
-    border: 2px solid #865D36;
-    border-radius: 5px;
-    font-size: 3em;
-    margin-left: 50px;
-}
-
-.novoregistro {
-    margin: 15px 0 75px 50px;
-}
-
-.novoregistro form {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
-}
-
-.novoregistro form input {
-    flex-grow: 1;
 }
 
 .nrformsub {
     max-width: 100px;
     flex-grow: 0;
     padding: 10px 20px;
-    background-color: #865D36;
+    background-color: #86c232;
     color: #ffffff;
-    border: 2px solid #865D36;
+    border: 2px solid #222629;
     border-radius: 5px;
     text-align: center;
+}
+
+hr {
+    margin: 25px 0 0 0;
 }
 
 /*configuração para dispositivos moveis*/

@@ -71,6 +71,7 @@ const Lista = () => {
                 <h1 className="titulo">Sua lista de favoritos está vazia</h1> 
             )
         }
+        <hr />
         <button className="registrar" onClick={handleAcaoChange}>+</button>
         {
             acao &&

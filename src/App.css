@@ -4,14 +4,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Oswald", serif; 
-    font-optical-sizing: auto; 
-    font-weight: 600; 
-    font-style: normal; 
+    font-family: "Oxygen", serif; 
+    font-weight: 400; 
+    font-style: normal;
 }
 
 p, span, a, label, li, input, button {
-    font-family: "Quattrocento", serif;
-    font-weight: 500;
-    font-style: normal;
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
 }

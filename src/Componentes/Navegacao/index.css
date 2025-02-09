@@ -14,9 +14,9 @@ header {
 
 .dev a {
     text-decoration: none;
-    border: 2px solid black;
+    border: 2px solid #222629;
     border-radius: 5px;
-    color: black;
+    color: #222629;
     padding: 3px 5px;
 }
 
@@ -39,15 +39,15 @@ nav {
 
 .container1 span {
     font-size: 42px;
-    color: #3E362E;
+    color: #222629;
 }
 
 .container1 a {
     text-decoration: none;
-    color: #3E362E;
+    color: #222629;
     padding: 5px 15px;
     border-radius: 5px;
-    border: 2px solid #865D36;
+    border: 2px solid #222629;
 }
 
 nav button {
@@ -65,7 +65,7 @@ nav button:hover {
 
 /*classe do navlink ativa*/
 .active {
-    background-color: #865D36;
+    background-color: #86c232;
     color: #ffffff !important;
 }
 

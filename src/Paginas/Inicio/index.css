@@ -30,7 +30,7 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    color: #3E362E;
+    color: #222629;
 }
 
 .botoes-login {
@@ -38,15 +38,16 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
+    width: 100%;
 }
 
 .botoes-login button, .botoes-login input {
     width: 100px;
     padding: 8px 15px;
     text-align: center;
-    border: 2px solid #865D36;
+    border: 2px solid #222629;
     border-radius: 5px;
-    color: #3E362E;
+    color: #222629;
 }
 
 /*area do registro*/
@@ -79,20 +80,21 @@
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: space-around;
+    width: 100%;
 }
 
 .botoes-registro button, .botoes-registro input {
     width: 100px;
     padding: 8px 15px;
     text-align: center;
-    border: 2px solid #865D36;
+    border: 2px solid #222629;
     border-radius: 5px;
-    color: #3E362E;
+    color: #222629;
 }
 
 /*botao ativo*/
 .active {
-    background-color: #865D36;
+    background-color: #86c232;
     color: #ffffff !important;
 }
 
@@ -102,12 +104,12 @@
 }
 
 input {
-    border: 2px solid #865D36;
+    border: 2px solid #222629;
     padding: 4px 6px;
     border-radius: 5px;
 }
 
 #email, #senha {
     width: 220px;
-    color: #3E362E;
+    color: #222629;
 }
