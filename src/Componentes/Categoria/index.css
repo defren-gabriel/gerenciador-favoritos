@@ -20,6 +20,7 @@
 
 .grupo {
     display: flex;
+    flex-wrap: wrap;
     gap: 5px;
 }
 
@@ -29,6 +30,7 @@
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
+    flex-grow: 1;
     gap: 5px;
 
     border: 1px solid #222629;
