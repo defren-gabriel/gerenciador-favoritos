@@ -89,7 +89,7 @@ const Categoria = ({categoria, categoriaid, lista}) => {
                     ))
                 }
             </div>
-            <button className="registrar" onClick={handleAcaoChange}>+</button>
+            <button className="registrar" onClick={handleAcaoChange}>Adicionar Favorito</button>
             {
             acao &&
                 <form onSubmit={handleSubmit}>

@@ -64,7 +64,7 @@ const Lista = () => {
             )
         }
         <hr />
-        <button className="registrar" onClick={handleAcaoChange}>+</button>
+        <button className="registrar" onClick={handleAcaoChange}>Adicionar Categoria</button>
         {
             acao &&
             <div className="novoregistro">

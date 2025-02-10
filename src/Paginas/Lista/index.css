@@ -24,6 +24,10 @@ hr {
     margin: 25px 0 0 0;
 }
 
+.novoregistro {
+    margin-bottom: 50px;
+}
+
 /*configuração para dispositivos moveis*/
 @media screen and (max-width: 750px){
     li, .novoregistro form {
