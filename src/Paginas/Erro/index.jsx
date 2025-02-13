@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import "./index.css";
+import styles from "./Erro.module.css";
 
 const Erro = () => {
     const navigate = useNavigate();
@@ -10,9 +10,9 @@ const Erro = () => {
     }, []);
 
     return(
-        <>
-            <h1>A pagina requisitada não existe, redirecionando para o início...</h1>
-        </>
+        <section className={styles.section}>
+            <h1 className={styles.titulo1}>A pagina requisitada não existe, redirecionando para o início...</h1>
+        </section>
     );
 }
 

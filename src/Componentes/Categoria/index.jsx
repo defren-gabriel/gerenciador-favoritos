@@ -1,7 +1,7 @@
 import {useState, useEffect, useRef} from "react";
 import { useAuth } from "../../Contextos/AuthLoginLogout";
 
-import "./index.css";
+import styles from "./Categoria.module.css";
 
 const Categoria = ({categoria, categoriaid, lista}) => {
     //coordenada o usuario e funcoes da tela
@@ -67,41 +67,41 @@ const Categoria = ({categoria, categoriaid, lista}) => {
     }
 
     return(
-        <div className="categoria">
-            <div className="cat">
-                <h2>{cat}</h2>
-                <button className="apagar" onClick={()=>handleDelChange()}>-</button>
+        <div className={styles.categoria}>
+            <div className={styles.cat}>
+                <h2 className={styles.titulo2}>{cat}</h2>
+                <button className={styles.apagar} onClick={()=>handleDelChange()}>-</button>
                 {
-                    del && <button className="apagar" onClick={()=>handleDeleteCategoria()}>Apagar a categoria</button>
+                    del && <button className={styles.apagar} onClick={()=>handleDeleteCategoria()}>Apagar a categoria</button>
                 }
             </div>
-            <div className="grupo">
+            <div className={styles.grupo}>
                 {
                     favoritos
                     .filter(item => item.categoria == cat)
                     .map((item) => (
-                        <div className="link" key={item.id}>
-                            <a href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
+                        <div className={styles.link} key={item.id}>
+                            <a className={styles.linka} href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
                             {
-                                del && <button onClick={() => handleDeleteFavorito(item.id)}>X</button>
+                                del && <button className={styles.linkb} onClick={() => handleDeleteFavorito(item.id)}>X</button>
                             }
                         </div>
                     ))
                 }
             </div>
-            <button className="registrar" onClick={handleAcaoChange}>Adicionar Favorito</button>
+            <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Favorito</button>
             {
             acao &&
-                <form onSubmit={handleSubmit}>
-                    <div className="campo">
-                        <label htmlFor="nome">Nome</label>
-                        <input type="text" name="nome" id="nome" value={nome} onChange={handleNomeChange} ref={inputNomeRef} />
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <div className={styles.campo}>
+                        <label className={styles.label} htmlFor="nome">Nome</label>
+                        <input className={styles.input} type="text" name="nome" id="nome" value={nome} onChange={handleNomeChange} ref={inputNomeRef} />
                     </div>
-                    <div className="campo">
-                        <label htmlFor="link">Link</label>
-                        <input type="text" name="link" id="link" value={link} onChange={handleLinkChange} />
+                    <div className={styles.campo}>
+                        <label className={styles.label} htmlFor="link">Link</label>
+                        <input className={styles.input} type="text" name="link" id="link" value={link} onChange={handleLinkChange} />
                     </div>
-                    <input type="submit" value="Registrar" className="nrformsub" />
+                    <input className={styles.nrformsub} type="submit" value="Registrar" />
                 </form>
             }
         </div>

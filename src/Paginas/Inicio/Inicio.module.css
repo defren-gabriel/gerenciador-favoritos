@@ -1,0 +1,207 @@
+/*area do login*/
+.login {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 750px;
+    margin: auto;
+}
+
+.loginf {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.loginfp {
+    text-align: center;
+    font-size: 1.5em;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.logintitulo1 {
+    margin-bottom: 25px;
+    font-size: 2em;
+    color: #222629;
+
+    font-family: "Oxygen", serif; 
+    font-weight: 400; 
+    font-style: normal;
+}
+
+.email {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #222629;
+}
+
+.senha {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #222629;
+
+    margin-bottom: 12px;
+}
+
+.botoes_login {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.botoes_loginb {
+    width: 100px;
+    padding: 8px 15px;
+    text-align: center;
+    border: 2px solid #222629;
+    border-radius: 5px;
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.botoes_logini {
+    width: 100px;
+    padding: 8px 15px;
+    text-align: center;
+    border: 2px solid #222629;
+    border-radius: 5px;
+    color: #222629;
+
+    background-color: #86c232;
+    color: #ffffff !important;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+/*area do registro*/
+.registro {
+    margin-top: 50px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 750px;
+    margin: auto;
+}
+
+.registrof {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.registrofp {
+    text-align: center;
+    font-size: 1.5em;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.registrotitulo1 {
+    margin-bottom: 25px;
+    font-size: 2em;
+    color: #222629;
+
+    font-family: "Oxygen", serif; 
+    font-weight: 400; 
+    font-style: normal;
+}
+
+.botoes_registro {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.botoes_registrob {
+    width: 100px;
+    padding: 8px 15px;
+    text-align: center;
+    border: 2px solid #222629;
+    border-radius: 5px;
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.botoes_registroi {
+    width: 100px;
+    padding: 8px 15px;
+    text-align: center;
+    border: 2px solid #222629;
+    border-radius: 5px;
+    color: #222629;
+
+    background-color: #86c232;
+    color: #ffffff !important;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.input {
+    border: 2px solid #222629;
+    padding: 4px 6px;
+    border-radius: 5px;
+
+    width: 220px;
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.label {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}
+
+.error {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal; 
+}

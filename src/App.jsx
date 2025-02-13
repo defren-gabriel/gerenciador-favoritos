@@ -8,9 +8,6 @@ import Erro from "./Paginas/Erro";
 //Componentes
 import Navegacao from "./Componentes/Navegacao";
 
-//Estilo global
-import "./App.css";
-
 const App = () => {
   
   return (

@@ -1,10 +1,10 @@
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 import { useAuth } from "../../Contextos/AuthLoginLogout";
 
 //Estilo local
-import "./index.css";
+import styles from "./Navegacao.module.css";
 
 const Navegacao = () => {
     //se estiver no inicio não mostra o botão sair
@@ -24,19 +24,18 @@ const Navegacao = () => {
     }
 
     return(
-        <header>
-            <div className="dev">
-                <a href="https://github.com/defren-gabriel/gerenciador-favoritos" target="_blank">Link do Projeto</a>
-                <a href="https://github.com/defren-gabriel" target="_blank">Link do DeFrEn</a>
+        <header className={styles.header}>
+            <div className={styles.dev}>
+                <a className={styles.deva} href="https://github.com/defren-gabriel/gerenciador-favoritos" target="_blank">Link do Projeto</a>
+                <a className={styles.deva} href="https://github.com/defren-gabriel" target="_blank">Link do DeFrEn</a>
             </div>
-
-            <nav>
-                <div className="container1">
-                    <span>Favoritos Web</span>
-                    <NavLink to={"/"} style={{display: estaLista ? "none" : "block"}} disabled={estaLista}>Início</NavLink>
-                    <NavLink to={"/lista"} style={{display: estaInicio ? "none" : "block"}} disabled={estaInicio} >Tarefas</NavLink>
+            <nav className={styles.nav}>
+                <div className={styles.container1}>
+                    <span className={styles.container1s}>Favoritos Web</span>
+                    <Link className={styles.container1a} to={"/"} style={{display: estaLista ? "none" : "block"}} disabled={estaLista}>Início</Link>
+                    <Link className={styles.container1a} to={"/lista"} style={{display: estaInicio ? "none" : "block"}} disabled={estaInicio} >Tarefas</Link>
                 </div>
-                <button style={{display: estaInicio ? "none" : "block"}} disabled={estaInicio} onClick={()=>handleSair()}>Sair</button>
+                <button className={styles.navb} style={{display: estaInicio ? "none" : "block"}} disabled={estaInicio} onClick={()=>handleSair()}>Sair</button>
             </nav>
         </header>
     );

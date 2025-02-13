@@ -5,7 +5,7 @@ import { useAuth } from "../../Contextos/AuthLoginLogout";
 import Categoria from "../../Componentes/Categoria";
 
 //importe o estilo local
-import "./index.css";
+import styles from "./Lista.module.css";
 
 const Lista = () => {
     //coordenada o usuario e funcoes da tela
@@ -46,13 +46,13 @@ const Lista = () => {
     }, [lista]);
 
     return(
-        <section>
+        <section className={styles.section}>
         {
             loadingLista ? ( 
-                <h1 className="titulo">Carregando sua lista...</h1> 
+                <h1 className={styles.titulo}>Carregando sua lista...</h1> 
             ) : categorias.length ? ( 
                 <>
-                    <h1 className="titulo">Lista de favoritos:</h1>
+                    <h1 className={styles.titulo}>Lista de favoritos:</h1>
                     {
                         categorias.map((item)=>(
                             <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} />
@@ -60,18 +60,18 @@ const Lista = () => {
                     }
                 </>
             ) : ( 
-                <h1 className="titulo">Sua lista de favoritos está vazia</h1> 
+                <h1 className={styles.titulo}>Sua lista de favoritos está vazia</h1> 
             )
         }
-        <hr />
-        <button className="registrar" onClick={handleAcaoChange}>Adicionar Categoria</button>
+        <hr className={styles.hr} />
+        <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Categoria</button>
         {
             acao &&
-            <div className="novoregistro">
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="categoria">Categoria</label>
-                    <input type="text" name="categoria" id="categoria" value={categoria} onChange={handleCategoriaChange} ref={inputCategoriaRef} />
-                    <input type="submit" value="Registrar" className="nrformsub" />
+            <div className={styles.novoregistro}>
+                <form className={styles.form} onSubmit={handleSubmit}>
+                    <label className={styles.label} htmlFor="categoria">Categoria</label>
+                    <input className={styles.input} type="text" name="categoria" id="categoria" value={categoria} onChange={handleCategoriaChange} ref={inputCategoriaRef} />
+                    <input className={styles.nrformsub} type="submit" value="Registrar" />
                 </form>
             </div>
         }

@@ -1,0 +1,12 @@
+.section {
+    max-width: 750px;
+    margin: auto;
+}
+
+.titulo1 {
+    color: #222629;
+    
+    font-family: "Oxygen", serif; 
+    font-weight: 400; 
+    font-style: normal;
+}
