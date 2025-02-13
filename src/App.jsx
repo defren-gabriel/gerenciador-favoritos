@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {HashRouter, Routes, Route} from "react-router-dom";
 
 //Páginas
 import Inicio from "./Paginas/Inicio";
@@ -12,14 +12,14 @@ const App = () => {
   
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
         <Navegacao />
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/lista" element={<Lista />} />
           <Route path="*" element={<Erro />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   )
 }
