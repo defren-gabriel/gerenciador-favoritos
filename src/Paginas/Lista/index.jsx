@@ -49,10 +49,21 @@ const Lista = () => {
     const [pesquisa, setPesquisa] = useState("");
     const handlePesquisaChange = (e) => setPesquisa(e.target.value);
     const [novapesquisa, setNovaPesquisa] = useState([]);
+    const [novacategorias, setNovaCategorias] = useState([]);
     useEffect(()=>{
         if(pesquisa.length){
+            //gera a nova lista de favoritos
             const novalista = lista.filter((item)=> item.nome.toLowerCase().includes(pesquisa.toLowerCase()));
             setNovaPesquisa(novalista);
+
+            //gera a lista com as categorias unicas
+            const categoriasFiltradas = [
+                ...new Set(novalista.map((item) => item.categoria))
+            ];
+
+            //gera a nova lista de categorias
+            const categoriasVisiveis = categorias.filter((item) =>categoriasFiltradas.includes(item.categoria));
+            setNovaCategorias(categoriasVisiveis);
         }
         else {
             setNovaPesquisa([]);
@@ -81,7 +92,7 @@ const Lista = () => {
                     </div>
                     {
                         novapesquisa.length ?
-                        categorias.map((item)=>(
+                        novacategorias.map((item)=>(
                             <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} />
                         )) :                    
                         categorias.map((item)=>(
