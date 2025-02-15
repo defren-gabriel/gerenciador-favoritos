@@ -9,7 +9,7 @@ import styles from "./Lista.module.css";
 
 const Lista = () => {
     //coordenada o usuario e funcoes da tela
-    const {user, registraCategoria, deletaCategoria, lista = [], categorias = [], loadingLista} = useAuth();
+    const {user, registraCategoria, lista = [], categorias = [], loadingLista} = useAuth();
     const navigate = useNavigate();
 
     //coordena a adição da categoria na lista
@@ -43,7 +43,29 @@ const Lista = () => {
         if(!user){
             navigate("/");
         }
-    }, [lista]);
+    }, [user]);
+
+    //manipula a pesquisa
+    const [pesquisa, setPesquisa] = useState("");
+    const handlePesquisaChange = (e) => setPesquisa(e.target.value);
+    const [novapesquisa, setNovaPesquisa] = useState([]);
+    useEffect(()=>{
+        if(pesquisa.length){
+            const novalista = lista.filter((item)=> item.nome.toLowerCase().includes(pesquisa.toLowerCase()));
+            setNovaPesquisa(novalista);
+        }
+        else {
+            setNovaPesquisa([]);
+        }
+    }, [pesquisa]);
+
+    //foca no componente de pesquisa
+    const inputPesquisaRef = useRef();
+    useEffect(() => {
+        if (inputPesquisaRef.current) {
+            inputPesquisaRef.current.focus();
+        }
+    }, [categorias, lista]);
 
     return(
         <section className={styles.section}>
@@ -53,10 +75,18 @@ const Lista = () => {
             ) : categorias.length ? ( 
                 <>
                     <h1 className={styles.titulo}>Lista de favoritos:</h1>
+                    <div className={styles.pesquisa}>
+                        <label className={styles.label} htmlFor="pesquisa">Pesquisar</label>
+                        <input className={styles.input} type="text" name="pesquisa" id="pesquisa" value={pesquisa} onChange={handlePesquisaChange} ref={inputPesquisaRef} />
+                    </div>
                     {
+                        novapesquisa.length ?
+                        categorias.map((item)=>(
+                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} />
+                        )) :                    
                         categorias.map((item)=>(
                             <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} />
-                        ))
+                        )) 
                     }
                 </>
             ) : ( 

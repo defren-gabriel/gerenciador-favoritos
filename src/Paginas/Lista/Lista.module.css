@@ -66,6 +66,14 @@
     box-sizing: border-box;
 }
 
+.pesquisa {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
 .label {
     color: #222629;
 
