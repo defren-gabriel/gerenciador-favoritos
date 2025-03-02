@@ -94,30 +94,22 @@ const Lista = () => {
 
     return(
         <section className={styles.section}>
-        {
-            loadingLista ? ( 
-                <h1 className={styles.titulo}>Carregando sua lista...</h1> 
-            ) : categorias.length ? ( 
-                <>
-                    <h1 className={styles.titulo}>Lista de favoritos:</h1>
-                    <div className={styles.pesquisa}>
-                        <label className={styles.label} htmlFor="pesquisa">Pesquisar</label>
-                        <input className={styles.input} type="text" name="pesquisa" id="pesquisa" value={pesquisa} onChange={handlePesquisaChange} ref={inputPesquisaRef} />
-                    </div>
-                    {
-                        novapesquisa.length ?
-                        novacategorias.map((item)=>(
-                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} limpar={limpaPesquisa} focar={focarPesquisa} />
-                        )) :                    
-                        categorias.map((item)=>(
-                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} limpar={limpaPesquisa} focar={focarPesquisa} />
-                        )) 
-                    }
-                </>
-            ) : ( 
-                <h1 className={styles.titulo}>Sua lista de favoritos está vazia</h1> 
-            )
-        }
+        <>
+            <h1 className={styles.titulo}>Sua lista de favoritos</h1>
+            <div className={styles.pesquisa}>
+                <label className={styles.label} htmlFor="pesquisa">Pesquisar</label>
+                <input className={styles.input} type="text" name="pesquisa" id="pesquisa" value={pesquisa} onChange={handlePesquisaChange} ref={inputPesquisaRef} />
+            </div>
+            {
+                novapesquisa.length ?
+                novacategorias.map((item)=>(
+                    <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} limpar={limpaPesquisa} focar={focarPesquisa} />
+                )) :                    
+                categorias.map((item)=>(
+                    <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} limpar={limpaPesquisa} focar={focarPesquisa} />
+                )) 
+            }
+        </>
         <hr className={styles.hr} />
         <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Categoria</button>
         {
