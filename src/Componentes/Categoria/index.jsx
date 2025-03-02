@@ -3,7 +3,7 @@ import { useAuth } from "../../Contextos/AuthLoginLogout";
 
 import styles from "./Categoria.module.css";
 
-const Categoria = ({categoria, categoriaid, lista}) => {
+const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
     //coordenada o usuario e funcoes da tela
     const {deletaFavorito, registraFavorito, deletaCategoria} = useAuth();
 
@@ -66,6 +66,12 @@ const Categoria = ({categoria, categoriaid, lista}) => {
         }
     }
 
+    //metodo que executa algumas coisas ao clicar no link
+    const clicouLink = () => {
+        limpar();
+        focar();
+    }
+
     return(
         <div className={styles.categoria}>
             <div className={styles.cat}>
@@ -81,7 +87,7 @@ const Categoria = ({categoria, categoriaid, lista}) => {
                     .filter(item => item.categoria == cat)
                     .map((item) => (
                         <div className={styles.link} key={item.id}>
-                            <a className={styles.linka} href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank">{item.nome}</a>
+                            <a className={styles.linka} href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank" onClick={()=>clicouLink()}>{item.nome}</a>
                             {
                                 del && <button className={styles.linkb} onClick={() => handleDeleteFavorito(item.id)}>X</button>
                             }

@@ -78,6 +78,20 @@ const Lista = () => {
         }
     }, [categorias, lista]);
 
+
+    //metodo que apaga a pesquisa assim que qualquer link seja clicado
+    const limpaPesquisa = () => {
+        setPesquisa("");
+    }
+
+    //foca no componente pesquisa apos clicar em um link
+    const focarPesquisa = () => {
+        if (inputPesquisaRef.current) {
+            inputPesquisaRef.current.focus();
+        }
+    }
+
+
     return(
         <section className={styles.section}>
         {
@@ -93,10 +107,10 @@ const Lista = () => {
                     {
                         novapesquisa.length ?
                         novacategorias.map((item)=>(
-                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} />
+                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} limpar={limpaPesquisa} focar={focarPesquisa} />
                         )) :                    
                         categorias.map((item)=>(
-                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} />
+                            <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} limpar={limpaPesquisa} focar={focarPesquisa} />
                         )) 
                     }
                 </>
