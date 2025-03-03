@@ -177,7 +177,7 @@ export const AuthProvider = ({ children }) => {
 
 
   //função que deleta um item do banco
-  const deletaCategoria = async (categoriaId, categoriaNome) => {
+  const deletaCategoria = async (categoriaId) => {
     try {
       // Verifica se o usuário está autenticado
       if (!user) {
@@ -187,7 +187,7 @@ export const AuthProvider = ({ children }) => {
   
       const q = query(
         collection(db, "registros"),
-        where("categoria", "==", categoriaNome),
+        where("categoria", "==", categoriaId),
         where("usuario", "==", user.uid) // Garante que só exclui os do usuário logado
       );
   

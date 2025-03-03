@@ -62,7 +62,7 @@ const Lista = () => {
             ];
 
             //gera a nova lista de categorias
-            const categoriasVisiveis = categorias.filter((item) =>categoriasFiltradas.includes(item.categoria));
+            const categoriasVisiveis = categorias.filter((item) =>categoriasFiltradas.includes(item.id));
             setNovaCategorias(categoriasVisiveis);
         }
         else {

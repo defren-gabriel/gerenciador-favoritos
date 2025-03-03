@@ -31,7 +31,7 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        registraFavorito(cat, nome, link);
+        registraFavorito(catid, nome, link);
         
         setNome("");
         setLink("");
@@ -54,7 +54,7 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
     const handleDeleteCategoria = () => {
         const confirmacao = window.confirm("Esta ação excluirá a categoria e todos os favoritos associados a ela. Deseja continuar?");
         if (confirmacao) {
-            deletaCategoria(catid, cat);
+            deletaCategoria(catid);
         }
     }
 
@@ -84,7 +84,7 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
             <div className={styles.grupo}>
                 {
                     favoritos
-                    .filter(item => item.categoria == cat)
+                    .filter(item => item.categoria == catid)
                     .map((item) => (
                         <div className={styles.link} key={item.id}>
                             <a className={styles.linka} href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank" onClick={()=>clicouLink()}>{item.nome}</a>
