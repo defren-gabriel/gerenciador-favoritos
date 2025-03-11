@@ -1,0 +1,10 @@
+.linka {
+    text-decoration: none;
+    color: #222629;
+    padding: 5px 10px;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+}
