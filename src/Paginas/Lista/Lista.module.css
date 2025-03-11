@@ -11,6 +11,8 @@
     font-family: "Oxygen", serif; 
     font-weight: 800; 
     font-style: normal;
+
+    margin-block: 0.75rem;
 }
 
 .nrformsub {
