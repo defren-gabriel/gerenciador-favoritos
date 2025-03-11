@@ -20,8 +20,7 @@
     flex-grow: 0;
     padding: 10px 20px;
     background-color: #86c232;
-    color: #ffffff;
-    border: 2px solid #222629;
+    color: #222629;
     border-radius: 5px;
     text-align: center;
 
@@ -29,6 +28,8 @@
     font-optical-sizing: auto; 
     font-weight: 600; 
     font-style: normal; 
+
+    border-radius: 7px;
 }
 
 .hr {
@@ -45,7 +46,7 @@
 }
 
 .registrar {
-    padding: 5px 10px;
+    padding: 10px 15px;
     margin: 25px 0 0 50px;
     color: #222629;
 
@@ -53,6 +54,9 @@
     font-optical-sizing: auto; 
     font-weight: 600; 
     font-style: normal; 
+
+    background-color: #86c232;
+    border-radius: 7px;
 }
 
 .form {

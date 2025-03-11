@@ -79,7 +79,6 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
                     .filter(item => item.categoria == categoriaid)
                     .map((item) => (
                         <div className={styles.link} key={item.id}>
-                            {/*<a className={styles.linka} href={item.link.startsWith("http") ? item.link : `http://${item.link}`} target="_blank" onClick={()=>clicouLink()}>{item.nome}</a>*/}
                             <LinkFavorito 
                                 lfhref={item.link.startsWith("http") ? item.link : `http://${item.link}`}  
                                 lfnome={item.nome}
