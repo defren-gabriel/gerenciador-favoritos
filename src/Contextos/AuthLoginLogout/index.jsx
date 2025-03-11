@@ -169,7 +169,6 @@ export const AuthProvider = ({ children }) => {
   const deletaFavorito = async (id) => {
     try {
       await deleteDoc(doc(db, "registros", id));
-      console.log("Registro deletado com sucesso!");
     } catch (error) {
       console.error("Erro ao deletar registro:", error);
     }
@@ -202,8 +201,6 @@ export const AuthProvider = ({ children }) => {
   
       // Agora deleta a categoria
       await deleteDoc(doc(db, "categorias", categoriaId));
-  
-      console.log("Categoria e registros relacionados deletados com sucesso!");
     } catch (error) {
       console.error("Erro ao deletar categoria e registros:", error);
     }
