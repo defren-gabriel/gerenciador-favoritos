@@ -22,54 +22,21 @@
     font-style: normal;
 }
 
-.apagar {
-    padding: 5px 10px;
+.configurar {
     color: #222629;
 
     font-family: "Noto Serif", serif; 
     font-optical-sizing: auto; 
     font-weight: 600; 
     font-style: normal;
-
-    background-color: rgb(226, 62, 94);
-    border-radius: 7px;
 }
 
 .grupo {
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
-}
 
-.link {
-    margin: 0;
-    padding: 0;
-
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-
-    border: 1px solid #222629;
-    border-radius: 5px;
-
-    background-color: #E9E9ED;
-}
-
-.linkb {
-    margin-right: 2px;
-    padding: 3px 5px;
-    color: #222629;
-
-    font-family: "Noto Serif", serif; 
-    font-optical-sizing: auto; 
-    font-weight: 600; 
-    font-style: normal;
-
-    background-color: white;
-    border-radius: 5px;
+    width: 100%;
 }
 
 .form {

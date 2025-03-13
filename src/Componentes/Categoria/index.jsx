@@ -7,7 +7,7 @@ import styles from "./Categoria.module.css";
 
 const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
     //coordenada o usuario e funcoes da tela
-    const {deletaFavorito, registraFavorito, deletaCategoria} = useAuth();
+    const { registraFavorito } = useAuth();
 
     //coordena o nome e endereço do link
     const [nome, setNome] = useState("");
@@ -37,26 +37,6 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
             inputNomeRef.current.focus();
         }
     }, [acao]);
-    
-    //coordena a ação de deletar os favoritos
-    const [del, setDel] = useState(false);
-    const handleDelChange = () => setDel(!del);
-
-    //função que manipula a execução da delete de categoria
-    const handleDeleteCategoria = () => {
-        const confirmacao = window.confirm("Esta ação excluirá a categoria e todos os favoritos associados a ela. Deseja continuar?");
-        if (confirmacao) {
-            deletaCategoria(categoriaid);
-        }
-    }
-
-    //função que manipula a execução da delete de favorito
-    const handleDeleteFavorito = (id) => {
-        const confirmacao = window.confirm("Esta ação excluirá o favorito associado. Deseja continuar?");
-        if (confirmacao) {
-            deletaFavorito(id);
-        }
-    }
 
     //metodo que executa algumas coisas ao clicar no link
     const clicouLink = () => {
@@ -68,26 +48,19 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
         <div className={styles.categoria}>
             <div className={styles.cat}>
                 <h2 className={styles.titulo2}>{categoria}</h2>
-                <button className={styles.apagar} onClick={()=>handleDelChange()}>-</button>
-                {
-                    del && <button className={styles.apagar} onClick={()=>handleDeleteCategoria()}>Apagar a categoria</button>
-                }
+                <button className={styles.configurar}>Configurações</button>
             </div>
             <div className={styles.grupo}>
                 {
                     lista
                     .filter(item => item.categoria == categoriaid)
                     .map((item) => (
-                        <div className={styles.link} key={item.id}>
-                            <LinkFavorito 
+                        <LinkFavorito 
                                 lfhref={item.link.startsWith("http") ? item.link : `http://${item.link}`}  
                                 lfnome={item.nome}
                                 lfclick={() => clicouLink()}
-                            />
-                            {
-                                del && <button className={styles.linkb} onClick={() => handleDeleteFavorito(item.id)}>X</button>
-                            }
-                        </div>
+                                key={item.id}
+                        />
                     ))
                 }
             </div>
