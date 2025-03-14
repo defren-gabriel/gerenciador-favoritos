@@ -1,0 +1,119 @@
+.container {
+    max-width: 500px;
+    margin: auto;
+
+    margin-bottom: 100px;
+}
+
+.retornar {
+    margin-top: 50px;
+
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+}
+
+.titulo1 {
+    text-align: center;
+
+    color: #222629;
+    font-size: 2em;
+
+    font-family: "Oxygen", serif; 
+    font-weight: 800; 
+    font-style: normal;
+
+    margin-block: 0.75rem;
+}
+
+.delcat {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+
+    background-color: rgb(245, 133, 133);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.titulo2 {
+    color: #222629;
+
+    font-family: "Oxygen", serif; 
+    font-weight: 800; 
+    font-style: normal;
+
+    margin-block: 0.75rem;
+}
+
+.grupo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.item {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nome {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+}
+
+.ginput {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.label {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+}
+
+.check {
+    width: 25px;
+    height: 25px;
+}
+
+.delreg {
+    color: #222629;
+
+    font-family: "Noto Serif", serif; 
+    font-optical-sizing: auto; 
+    font-weight: 600; 
+    font-style: normal;
+
+    background-color: rgb(245, 133, 133);
+    padding: 5px 10px;
+    border-radius: 5px;
+}

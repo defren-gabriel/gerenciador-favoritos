@@ -9,7 +9,7 @@ import styles from "./Lista.module.css";
 
 const Lista = () => {
     //coordenada o usuario e funcoes da tela
-    const {user, registraCategoria, lista = [], categorias = [], loadingLista} = useAuth();
+    const {user, registraCategoria, lista = [], categorias = []} = useAuth();
     const navigate = useNavigate();
 
     //coordena a adição da categoria na lista

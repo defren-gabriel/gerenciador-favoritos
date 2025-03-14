@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef} from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contextos/AuthLoginLogout";
 
 import LinkFavorito from "../../Componentes/LinkFavorito";
@@ -44,11 +45,20 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
         focar();
     }
 
+    //avança para a tela de configuração da categoria e seus registros
+    const navigate = useNavigate();
+    const pesquisarCategoria = () => {
+        navigate(`/configurarcategoria/${categoria}/${categoriaid}`);
+    }
+
     return(
         <div className={styles.categoria}>
             <div className={styles.cat}>
                 <h2 className={styles.titulo2}>{categoria}</h2>
-                <button className={styles.configurar}>Configurações</button>
+                <button 
+                    className={styles.configurar}
+                    onClick={() => pesquisarCategoria()}
+                >Configurações</button>
             </div>
             <div className={styles.grupo}>
                 {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { db, auth } from "../../Firebase/config"; // Verifique se o caminho está correto
+import { db, auth } from "../../Firebase/config"; 
 import { 
   signInWithEmailAndPassword, 
   signOut, 
@@ -16,7 +16,8 @@ import {
   doc,
   serverTimestamp,
   orderBy,
-  getDocs
+  getDocs,
+  updateDoc
 } from "firebase/firestore";
 
 // Criando o contexto
@@ -205,10 +206,27 @@ export const AuthProvider = ({ children }) => {
       console.error("Erro ao deletar categoria e registros:", error);
     }
   };
+
+
+  //função que atualiza o registro que foi mudado de posição
+  const atualizaRegistroTimestamp = async (id, novoTimestamp) => {
+    try {
+      if (!user) return;
+  
+      const registroRef = doc(db, "registros", id);
+  
+      await updateDoc(registroRef, {
+        timestamp: novoTimestamp, // Usa o timestamp passado na função
+      });
+  
+    } catch (error) {
+      console.error("Erro ao atualizar o timestamp do registro:", error);
+    }
+  };
   
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, deletaCategoria, categorias, loadingLista }}>
+    <AuthContext.Provider value={{ user, login, register, logout, loading, registraFavorito, registraCategoria, lista, deletaFavorito, deletaCategoria, categorias, loadingLista, atualizaRegistroTimestamp }}>
       {!loading && children}
     </AuthContext.Provider>
   );
