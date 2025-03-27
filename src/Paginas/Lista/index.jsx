@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Contextos/AuthLoginLogout";
 
 import Categoria from "../../Componentes/Categoria";
+import Atalhos from "../../Componentes/Atalhos";
 
 //importe o estilo local
 import styles from "./Lista.module.css";
@@ -91,24 +92,36 @@ const Lista = () => {
         }
     }
 
+    //simplifica a renderização
+    const listaCategorias = novapesquisa.length ? novacategorias : categorias;
+    const listaItens = novapesquisa.length ? novapesquisa : lista;
 
     return(
         <section className={styles.section}>
         <>
-            <h1 className={styles.titulo}>Sua lista de favoritos</h1>
+            <h1 
+                className={styles.titulo}
+            >
+                Sua lista de favoritos
+            </h1>
             <div className={styles.pesquisa}>
                 <label className={styles.label} htmlFor="pesquisa">Pesquisar</label>
                 <input className={styles.input} type="text" name="pesquisa" id="pesquisa" value={pesquisa} onChange={handlePesquisaChange} ref={inputPesquisaRef} />
             </div>
-            {
-                novapesquisa.length ?
-                novacategorias.map((item)=>(
-                    <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={novapesquisa} limpar={limpaPesquisa} focar={focarPesquisa} />
-                )) :                    
-                categorias.map((item)=>(
-                    <Categoria key={item.id} categoria={item.categoria} categoriaid={item.id} lista={lista} limpar={limpaPesquisa} focar={focarPesquisa} />
-                )) 
-            }
+            {/* Lista os atalhos das âncoras */}
+            <Atalhos lista={listaCategorias} />
+
+            {/* Lista as categorias */}
+            {listaCategorias.map((item) => (
+                <Categoria
+                    key={item.id}
+                    categoria={item.categoria}
+                    categoriaid={item.id}
+                    lista={listaItens}
+                    limpar={limpaPesquisa}
+                    focar={focarPesquisa}
+                />
+            ))}
         </>
         <hr className={styles.hr} />
         <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Categoria</button>

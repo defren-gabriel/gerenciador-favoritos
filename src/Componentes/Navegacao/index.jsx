@@ -25,7 +25,7 @@ const Navegacao = () => {
     return(
         <header className={styles.header}>
             <div className={styles.dev}>
-                <a className={styles.deva} href="https://github.com/defren-gabriel/gerenciador-favoritos" target="_blank">Link do Projeto</a>
+                <a className={styles.deva} href="https://github.com/defren-gabriel/gerenciador-favoritos" target="_blank" id="inicio">Link do Projeto</a>
                 <a className={styles.deva} href="https://github.com/defren-gabriel" target="_blank">Link do DeFrEn</a>
             </div>
             <nav className={styles.nav}>

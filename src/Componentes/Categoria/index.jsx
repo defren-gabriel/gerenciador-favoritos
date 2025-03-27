@@ -51,10 +51,29 @@ const Categoria = ({categoria, categoriaid, lista, limpar, focar}) => {
         navigate(`/configurarcategoria/${categoria}/${categoriaid}`);
     }
 
+    //faz o scroll para as ancoras
+    const scrollToSection = (id) => {
+        const section = document.getElementById(id);
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return(
         <div className={styles.categoria}>
             <div className={styles.cat}>
-                <h2 className={styles.titulo2}>{categoria}</h2>
+                <button 
+                    onClick={() => scrollToSection("inicio")}
+                    className={styles.configurar}
+                >
+                    Inicio
+                </button>
+                <h3 
+                    className={styles.titulo2}
+                    id={categoriaid}
+                >
+                    {categoria}
+                </h3>
                 <button 
                     className={styles.configurar}
                     onClick={() => pesquisarCategoria()}

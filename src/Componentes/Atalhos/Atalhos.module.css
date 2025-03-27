@@ -1,0 +1,32 @@
+.container {
+    width: 500px;
+
+    margin-bottom: 25px;
+}
+
+.titulo {
+    color: #222629;
+    font-family: "Oxygen", serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.grupobotao {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+}
+
+.botao {
+    padding: 5px 10px;
+    flex-grow: 1;
+
+    color: #222629;
+    font-family: "Noto Serif", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
