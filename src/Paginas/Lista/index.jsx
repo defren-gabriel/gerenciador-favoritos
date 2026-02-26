@@ -111,6 +111,19 @@ const Lista = () => {
             {/* Lista os atalhos das âncoras */}
             <Atalhos lista={listaCategorias} />
 
+            {/* botão para adicionar nova categoria */}
+            <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Categoria</button>
+            {
+                acao &&
+                <div className={styles.novoregistro}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
+                        <label className={styles.label} htmlFor="categoria">Categoria</label>
+                        <input className={styles.input} type="text" name="categoria" id="categoria" value={categoria} onChange={handleCategoriaChange} ref={inputCategoriaRef} />
+                        <input className={styles.nrformsub} type="submit" value="Registrar" />
+                    </form>
+                </div>
+            }
+
             {/* Lista as categorias */}
             {listaCategorias.map((item) => (
                 <Categoria
@@ -123,18 +136,6 @@ const Lista = () => {
                 />
             ))}
         </>
-        <hr className={styles.hr} />
-        <button className={styles.registrar} onClick={handleAcaoChange}>Adicionar Categoria</button>
-        {
-            acao &&
-            <div className={styles.novoregistro}>
-                <form className={styles.form} onSubmit={handleSubmit}>
-                    <label className={styles.label} htmlFor="categoria">Categoria</label>
-                    <input className={styles.input} type="text" name="categoria" id="categoria" value={categoria} onChange={handleCategoriaChange} ref={inputCategoriaRef} />
-                    <input className={styles.nrformsub} type="submit" value="Registrar" />
-                </form>
-            </div>
-        }
         </section>
     );
 }
